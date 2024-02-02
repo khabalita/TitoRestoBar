@@ -1,25 +1,43 @@
-
 package com.mycompany.titosrestobar.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
-@Entity
-public class Producto implements Serializable {
+
+@Entity (name = "elaborado")
+@Table(name = "Productos")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+        name = "Tipo",
+        discriminatorType = DiscriminatorType.STRING
+)
+public class Producto implements Serializable{
+    
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private int id_producto; 
-    @Basic
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer id_producto;
+    
+    @Column(name = "Nombre")
     private String nombre;
+    @Column(name = "Descripcion")
     private String descripcion;
+    @Column(name = "Costo")
     private Double costo;
+    @Column(name = "Precio")
     private Double precio;
 
+    //Constructores
     public Producto() {
+        
     }
 
     public Producto(String nombre, String descripcion, Double costo, Double precio) {
@@ -29,7 +47,7 @@ public class Producto implements Serializable {
         this.precio = precio;
     }
 
-    public int getId(){
+    public Integer getId_Producto(){
         return id_producto;
     }
     
@@ -67,9 +85,8 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "Producto{nombre=" + nombre + ", descripcion=" + descripcion + ", costo=" + costo + ", precio=" + precio + '}';
+        return "Producto{" + "id_producto=" + id_producto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", costo=" + costo + ", precio=" + precio + '}';
     }
-    
     
     
     

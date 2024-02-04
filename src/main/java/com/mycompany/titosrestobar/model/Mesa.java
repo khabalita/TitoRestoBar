@@ -12,12 +12,12 @@ import javax.persistence.Table;
 @Table(name="Mesas")
 public class Mesa implements Serializable{
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id_mesa;
     
     @Column(name = "Num_mesas")
     private Integer num_mesa;
-
+    
     //Constructores
     public Mesa() {
         
@@ -34,7 +34,7 @@ public class Mesa implements Serializable{
     public void setNum_mesa(Integer num_mesa) {
         this.num_mesa = num_mesa;
     }
-    
-    
+
+  
         
 }

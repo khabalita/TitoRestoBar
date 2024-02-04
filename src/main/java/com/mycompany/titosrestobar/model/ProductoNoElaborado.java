@@ -5,7 +5,11 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 
+@NamedQuery(name = "ProductoNoElaborado.listarProductosNoElaborados",
+        query = "SELECT p FROM ProductoNoElaborado p"
+)
 @Entity
 @DiscriminatorValue(value = "no_elaborado")
 public class ProductoNoElaborado extends Producto implements Serializable{

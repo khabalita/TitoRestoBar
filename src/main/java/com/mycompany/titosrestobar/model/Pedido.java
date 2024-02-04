@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,47 +23,37 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id_pedido;
     
-    //revisar este atributo precio
-    @Column(name = "Precio")
-    private Double precio;
     @Column(name = "Fecha_Inicio")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     private Date fechaInicio;
     @Column(name = "Fecha_Cierre")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     private Date fechaCierre;
     @Column(name = "Total")
     private Double valorTotal;
     @Column(name = "Descuento")
-    private Double descuento = null;
+    private Double descuento;
     @Column(name = "Subtotal")
     private Double subTotal;
+    @Column(name = "estado")
+    private Boolean estado;
 
     @OneToMany(mappedBy = "pedido")
     private List<Item> items;
     
+    @OneToOne
+    @JoinColumn(name = "id_mesa")
+    private Mesa mesa;
     
-    //Constructores
+    
+    //Constructor vacio
     public Pedido(){
     
     }
-    public Pedido(Double precio, Date fechaInicio, Date fechaCierre, Double valorTotal, Double descuento, Double subTotal, List<Item> items) {
-        this.precio = precio;
-        this.fechaInicio = fechaInicio;
-        this.fechaCierre = fechaCierre;
-        this.valorTotal = valorTotal;
-        this.descuento = descuento;
-        this.subTotal = subTotal;
-        this.items = items;
-    }
     
     //Getter y Setter
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public Integer getId_pedido() {
+        return id_pedido;
     }
 
     public Date getFechaInicio() {
@@ -96,6 +87,14 @@ public class Pedido implements Serializable {
         this.valorTotal = valorTotal;
     }
 
+    public Double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(Double subTotal) {
+        this.subTotal = subTotal;
+    }
+
     public Double getDescuento() {
         return descuento;
     }
@@ -103,6 +102,30 @@ public class Pedido implements Serializable {
     public void setDescuento(Double descuento) {
         this.descuento = descuento;
     }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "id_pedido=" + id_pedido + ", fechaInicio=" + fechaInicio + ", fechaCierre=" + fechaCierre + ", valorTotal=" + valorTotal + ", descuento=" + descuento + ", subTotal=" + subTotal + ", estado=" + estado + ", items=" + items + ", mesa=" + mesa + '}';
+    }
+    
     
     
 }

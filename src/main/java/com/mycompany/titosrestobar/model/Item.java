@@ -32,7 +32,7 @@ public class Item {
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
 
-    //Constructores
+    //Constructor vacio
     public Item(){
     
     }
@@ -73,6 +73,11 @@ public class Item {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "id_item=" + id_item + ", cantidad=" + cantidad + ", precio=" + precio + ", producto=" + producto + ", pedido=" + pedido + '}';
     }
     
     

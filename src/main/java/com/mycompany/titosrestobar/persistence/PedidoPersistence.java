@@ -23,7 +23,12 @@ public class PedidoPersistence extends PersistenceJpa<Pedido>{
        Pedido pedido = em.find(Pedido.class, id_pedido);
        super.delete(pedido);
     }
-    
+    public Pedido buscarProductoPorId(Integer id_pedido){
+        super.connect();
+        Pedido pedido = em.find(Pedido.class, id_pedido);
+        super.disconnect();
+        return pedido;
+    }
     //conecta a la base de datos, crea una query y la asigna a un listado de pedidos
     public List<Pedido> listarPedidos(int id_producto){
         super.connect();

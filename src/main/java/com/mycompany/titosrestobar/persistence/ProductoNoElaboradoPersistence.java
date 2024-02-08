@@ -5,38 +5,40 @@ import com.mycompany.titosrestobar.model.ProductoNoElaborado;
 import java.util.List;
 
 
-public class ProductoNoElaboradoPersistence extends PersistenceJpa<ProductoNoElaborado> {
+public class ProductoNoElaboradoPersistence extends PersistenceJpa<ProductoNoElaborado>{
     
-    public ProductoNoElaboradoPersistence(){
+    public ProductoNoElaboradoPersistence() {
         super();
     }
     
-    public void crearProductoNoElaborado(ProductoNoElaborado productoNoElaborado){
-        super.create(productoNoElaborado);
+    public void crearProducto(ProductoNoElaborado producto){
+        super.create(producto);
     }
     
-    public void editarProductoNoElaborado(ProductoNoElaborado productoNoElaborado){
-        super.update(productoNoElaborado);
+    public void editarProducto(ProductoNoElaborado producto){
+        super.update(producto);
     }
     
-    public void eliminarProductoNoElaborado(Integer id_producto){
-        ProductoNoElaborado productoNoElaborado = buscarProductoNoElaboradoPorId(id_producto);
-        super.delete(productoNoElaborado);
+    public void eliminarProducto(Integer id_producto){
+        ProductoNoElaborado producto = buscarProductoPorId(id_producto);
+        super.delete(producto);
     }
     
-    public ProductoNoElaborado buscarProductoNoElaboradoPorId(Integer id_producto){
+    //devuelve un producto por id
+    public ProductoNoElaborado buscarProductoPorId(Integer id_producto){
         super.connect();
-        ProductoNoElaborado productoNoElaborado = em.find(ProductoNoElaborado.class, id_producto);
+        ProductoNoElaborado producto = em.find(ProductoNoElaborado.class, id_producto);
         super.disconnect();
-        return productoNoElaborado;
+        return producto;
     }
     
-    public List<ProductoNoElaborado> listarProductosNoElaborados(){
+    //devuelve una lista de productos con el stock
+    //PUEDE ESTAR REPETIDO - REVISAR
+    public List<ProductoNoElaborado> listarTodosLosTipoDeProducto(){
         super.connect();
-        List<ProductoNoElaborado> productosNoElaborados = em.createNamedQuery
-                            ("ProductosNoElaborados.listarProductosNoElaborados", 
-                            ProductoNoElaborado.class).getResultList();
+        List<ProductoNoElaborado> productos = em.createNamedQuery("ProductoNoElaborado.listarTodosLosTiposDeProductos", ProductoNoElaborado.class)
+                .getResultList();
         super.disconnect();
-        return productosNoElaborados;
+        return productos;
     }
 }

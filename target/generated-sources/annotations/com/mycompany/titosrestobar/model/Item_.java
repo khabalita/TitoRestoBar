@@ -6,11 +6,10 @@ import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-02-04T16:47:55", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-02-08T14:26:09", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Item.class)
 public class Item_ { 
 
-    public static volatile SingularAttribute<Item, Double> precio;
     public static volatile SingularAttribute<Item, Integer> id_item;
     public static volatile SingularAttribute<Item, Pedido> pedido;
     public static volatile SingularAttribute<Item, Integer> cantidad;

@@ -12,6 +12,7 @@ com/mycompany/titosrestobar/TitosRestoBar.class
 com/mycompany/titosrestobar/view/ProductoView.class
 com/mycompany/titosrestobar/controller/ItemController.class
 com/mycompany/titosrestobar/persistence/PersistenceJpa.class
+com/mycompany/titosrestobar/view/ProductoView$10.class
 com/mycompany/titosrestobar/view/Principal$1.class
 com/mycompany/titosrestobar/controller/PedidoController.class
 com/mycompany/titosrestobar/view/ProductoView$2.class
@@ -30,6 +31,7 @@ com/mycompany/titosrestobar/view/ProductoView$6.class
 com/mycompany/titosrestobar/persistence/ProductoNoElaboradoPersistence.class
 com/mycompany/titosrestobar/persistence/ItemPersistence.class
 com/mycompany/titosrestobar/view/Principal.class
+com/mycompany/titosrestobar/view/ProductoView$11.class
 com/mycompany/titosrestobar/view/ProductoView$1.class
 com/mycompany/titosrestobar/controller/MesaController.class
 com/mycompany/titosrestobar/view/ProductoView$4.class

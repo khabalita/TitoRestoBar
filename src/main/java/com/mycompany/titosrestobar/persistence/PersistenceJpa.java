@@ -12,6 +12,8 @@ public abstract class PersistenceJpa<T>{
     protected EntityManagerFactory emf;
     protected EntityManager em;
     
+    
+    
     public PersistenceJpa(){
         emf = Persistence.createEntityManagerFactory("TitosRestobarJPA");
         em = emf.createEntityManager();

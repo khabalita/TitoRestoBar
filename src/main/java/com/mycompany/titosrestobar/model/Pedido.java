@@ -119,7 +119,16 @@ public class Pedido implements Serializable {
         this.mesa = mesa;
     }
     
+    //METODOS
     
+    //calcula el valor total de pedido ten
+    public Double calculaTotalPedido(){
+        this.valorTotal = 0.0;
+        for(Item item: items){
+            this.valorTotal =+ item.calcularSubTotal();
+        }
+        return valorTotal;
+    }   
 
     @Override
     public String toString() {

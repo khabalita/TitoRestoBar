@@ -1,11 +1,14 @@
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/persistence/MesaPersistence.java
+/Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/view/ModificarProductoView.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/persistence/exceptions/PreexistingEntityException.java
+/Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/view/PedidoView.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/persistence/ItemPersistence.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/model/Item.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/model/ProductoNoElaborado.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/persistence/exceptions/NonexistentEntityException.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/view/Principal.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/view/ProductoView.java
+/Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/view/MesaView.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/controller/ProductoController.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/persistence/exceptions/IllegalOrphanException.java
 /Users/nicolaslazaro/Documents/Repogit/RestoBar/TitoRestoBar/src/main/java/com/mycompany/titosrestobar/persistence/PersistenceJpa.java

@@ -7,10 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Scanner;
 
 public class PedidoController {
-    Scanner sc = new Scanner(System.in).useDelimiter("\n");
     PedidoPersistence pedidoPersis = new PedidoPersistence();
     
     public void crearPedido(){

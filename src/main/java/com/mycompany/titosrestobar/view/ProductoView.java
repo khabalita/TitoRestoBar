@@ -48,8 +48,8 @@ public class ProductoView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProductos = new javax.swing.JTable();
         btnVolverPrincipal = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEliminarProducto = new javax.swing.JButton();
+        btnModificarProducto = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -211,9 +211,19 @@ public class ProductoView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("eliminar");
+        btnEliminarProducto.setText("eliminar");
+        btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProductoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("modificar");
+        btnModificarProducto.setText("modificar");
+        btnModificarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarProductoActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel8.setText("Lista de Productos");
@@ -234,10 +244,10 @@ public class ProductoView extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                                        .addComponent(jButton2))))
+                                        .addComponent(btnModificarProducto))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(164, 164, 164)
                                 .addComponent(jLabel8)
@@ -271,9 +281,9 @@ public class ProductoView extends javax.swing.JFrame {
                                 .addGap(15, 15, 15))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnModificarProducto)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -316,15 +326,10 @@ public class ProductoView extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbTipoProductoActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-        JOptionPane optionPane;
-        JDialog dialog;
+
         int tipoSeleccionado = cmbTipoProducto.getSelectedIndex();
         if(tipoSeleccionado == 0){
-            optionPane = new JOptionPane("Elegi un tipo de producto");
-            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
-            dialog = optionPane.createDialog("Tipo Producto");
-            dialog.setAlwaysOnTop(true);
-            dialog.setVisible(true);
+            mostrarMensaje("Selecciona un tipo", "error", "Tipo Producto");
             }else if (tipoSeleccionado == 1){
                 ProductoController prodControl = new ProductoController();
                 String nombre = txtNombre.getText();
@@ -332,11 +337,8 @@ public class ProductoView extends javax.swing.JFrame {
                 Double costo = Double.valueOf(txtCosto.getText());
                 Double precio = Double.valueOf(txtPrecio.getText());
                 prodControl.crearProducto(nombre, descripcion, costo, precio);
-                optionPane = new JOptionPane("Producto Elaborado ingresado con exito");
-                optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-                dialog = optionPane.createDialog("Carga Exitosa");
-                dialog.setAlwaysOnTop(true);
-                dialog.setVisible(true);
+                mostrarMensaje("Producto elaborado cargado con exito", "info", "Producto");
+                cargarTablaProductos();
                     }else if (tipoSeleccionado == 2){
                         ProductoController prodControl = new ProductoController();
                         String nombre = txtNombre.getText();
@@ -345,11 +347,8 @@ public class ProductoView extends javax.swing.JFrame {
                         Double precio = Double.valueOf(txtPrecio.getText());
                         Integer stock = Integer.valueOf(txtStock.getText());
                         prodControl.crearProductoNoElaborado(nombre, descripcion, costo, precio, stock);
-                        optionPane = new JOptionPane("Producto No Elaborado ingresado con exito");
-                        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-                        dialog = optionPane.createDialog("Carga Exitosa");
-                        dialog.setAlwaysOnTop(true);
-                        dialog.setVisible(true);
+                        mostrarMensaje("Producto no elaborado cargado con exito","info","Producto");
+                        cargarTablaProductos();
                         }
         
         
@@ -379,13 +378,46 @@ public class ProductoView extends javax.swing.JFrame {
         cargarTablaProductos();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+
+        if(tbProductos.getRowCount() > 0){
+            if(tbProductos.getSelectedRow() != -1){
+                Integer id_producto = Integer.parseInt(String.valueOf(tbProductos.getValueAt(tbProductos.getSelectedRow(),0)));
+                prodControl.eliminarProducto(id_producto);
+                mostrarMensaje("Producto eliminado correctamente","info","Eliminar Producto");
+                cargarTablaProductos();
+            }else {
+                mostrarMensaje("Selecciona un producto","error","Error al eliminar");
+            }
+        }else{
+            mostrarMensaje("No hay elementos para eliminar","error","Error al eliminar");
+        }
+    }//GEN-LAST:event_btnEliminarProductoActionPerformed
+
+    private void btnModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProductoActionPerformed
+        if(tbProductos.getRowCount() > 0){
+            if(tbProductos.getSelectedRow() != -1){
+                Integer id_producto = Integer.parseInt(String.valueOf(tbProductos.getValueAt(tbProductos.getSelectedRow(),0)));
+                ModificarProductoView modificarView = new ModificarProductoView(id_producto);
+                modificarView.setVisible(true);
+                modificarView.setLocationRelativeTo(null);
+                prodControl.traerProducto(id_producto);
+                cargarTablaProductos();
+            }else {
+                mostrarMensaje("Selecciona un producto","error","Error al modificar");
+            }
+        }else{
+            mostrarMensaje("No hay elementos para modificar","error","Error al modificar");
+        }
+    }//GEN-LAST:event_btnModificarProductoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
+    private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnLimpiarProducto;
+    private javax.swing.JButton btnModificarProducto;
     private javax.swing.JButton btnVolverPrincipal;
     private javax.swing.JComboBox<String> cmbTipoProducto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -432,5 +464,18 @@ public class ProductoView extends javax.swing.JFrame {
                 tabla.addRow(objeto);
             }
         }tbProductos.setModel(tabla);
+    }
+    
+    //Metodo que muestra por pantalla un cartelito
+    public void mostrarMensaje(String mensaje, String tipo, String titulo){
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if(tipo.equals("info")){
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        }else if(tipo.equals("error")){
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
 }

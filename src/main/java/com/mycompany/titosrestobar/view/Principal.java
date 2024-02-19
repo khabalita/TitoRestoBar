@@ -40,6 +40,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setText("Tito's RestoBar");
 
         btnVerPedidos.setText("Pedidos");
+        btnVerPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerPedidosActionPerformed(evt);
+            }
+        });
 
         btnVerProductos.setText("Productos");
         btnVerProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +54,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnVerMesas.setText("Mesas");
+        btnVerMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMesasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -116,6 +126,18 @@ public class Principal extends javax.swing.JFrame {
         prodView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVerProductosActionPerformed
+
+    private void btnVerMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMesasActionPerformed
+        MesaView mesaView = new MesaView();
+        mesaView.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVerMesasActionPerformed
+
+    private void btnVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPedidosActionPerformed
+        PedidoView pedidoView = new PedidoView();
+        pedidoView.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVerPedidosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

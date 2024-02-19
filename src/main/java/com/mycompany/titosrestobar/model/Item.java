@@ -23,6 +23,9 @@ public class Item implements Serializable {
     @Column(name = "Cantidad")
     private Integer cantidad;
     
+    @Column(name = "precio")
+    private Double precio;
+    
     @OneToOne
     @JoinColumn(name = "id_producto")
     private Producto producto;
@@ -37,6 +40,7 @@ public class Item implements Serializable {
     }
     public Item(Integer cantidad, Double precio, Producto producto, Pedido pedido) {
         this.cantidad = cantidad;
+        this.precio = precio;
         this.producto = producto;
         this.pedido = pedido;
     }
@@ -47,6 +51,14 @@ public class Item implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+    
+    public Double getPrecio(){
+        return precio;
+    }
+    
+    public void setPrecio(Double precio){
+        this.precio = precio;
     }
 
     public Producto getProd() {
@@ -67,7 +79,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Item{" + "id_item=" + id_item + ", cantidad=" + cantidad + ", producto=" + producto + ", pedido=" + pedido + '}';
+        return "Item{" + "id_item=" + id_item + ", cantidad=" + cantidad + ", precio=" + precio + ", producto=" + producto + ", pedido=" + pedido + '}';
     }
     
     //calcula el precio por la cantidad de items

@@ -64,7 +64,11 @@ public abstract class PersistenceJpa<T>{
         try{
             connect();
             em.getTransaction().begin();
-            em.remove(object);
+            //el metodo merge me trae de la base de datos el objeto por parametro
+            //se lo asigno a una variable auxiliar llamada dObject (delete object) del tipo T (variable generica)
+            T dObject= em.merge(object);
+            //ahora puedo removerlo
+            em.remove(dObject);
             em.getTransaction().commit();
         }catch(Exception e){
             System.out.println("Error al eliminar el objeto" + e.getMessage());
@@ -75,4 +79,5 @@ public abstract class PersistenceJpa<T>{
         }
         
     }
+    
 }

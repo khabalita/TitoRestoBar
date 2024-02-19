@@ -1,17 +1,14 @@
 
+
 package com.mycompany.titosrestobar.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
 
 @Entity
 @DiscriminatorValue (value = "no elaborado")
-
-//REVISAR SI LA QUERY VA ACA O VA EN LA CLASE PRODUCTO
-
 public class ProductoNoElaborado extends Producto implements Serializable{
     
     @Column(name = "Stock")

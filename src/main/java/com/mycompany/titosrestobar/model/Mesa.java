@@ -7,11 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Mesas")
+@NamedQuery(name = "Mesa.listarMesas", query = "SELECT m FROM Mesa m")
 public class Mesa implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class Mesa implements Serializable{
     
     @OneToOne
     @JoinColumn(name = "id_pedido")
-    private Pedido pedido;
+    private Pedido pedido = null;
     
     //Constructores
     public Mesa() {

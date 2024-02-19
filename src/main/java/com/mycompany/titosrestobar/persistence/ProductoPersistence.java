@@ -41,4 +41,5 @@ public class ProductoPersistence extends PersistenceJpa<Producto>{
         super.disconnect();
         return productos;
     }
+    
 }

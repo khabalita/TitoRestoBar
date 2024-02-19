@@ -24,9 +24,8 @@ import javax.persistence.Table;
         discriminatorType = DiscriminatorType.STRING
 )
 @NamedQueries({
-    @NamedQuery(name = "Producto.listarProductos", query = "SELECT p FROM Producto p")
-        //REVISAR ESTA QUERY
-    //@NamedQuery(name = "Producto.listar", query = "SELECT p FROM Producto p")
+    @NamedQuery(name = "Producto.listarProductos", query = "SELECT p FROM Producto p"),
+    @NamedQuery(name = "Producto.listarProductosNoElaborados", query = "SELECT p FROM Producto p WHERE TYPE(p) = ProductoNoElaborado")
 })
 public class Producto implements Serializable{
     

@@ -3,20 +3,26 @@ package com.mycompany.titosrestobar.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Pedidos")
+//consulta que devuelve los pedidos activos
+@NamedQueries({
+    @NamedQuery(name = "Pedido.buscarPedidoActivo", query = "SELECT p FROM Pedido p WHERE p.estado = :estado")
+
+})
 public class Pedido implements Serializable {
     
     @Id
@@ -38,17 +44,23 @@ public class Pedido implements Serializable {
     @Column(name = "estado")
     private Boolean estado;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<Item> items;
-    
-    @OneToOne
-    @JoinColumn(name = "id_mesa")
-    private Mesa mesa;
-    
     
     //Constructor vacio
     public Pedido(){
     
+    }
+    
+    public Pedido(Date fechaInicio, Date fechaCierre, Double valorTotal, Double descuento, Double subTotal, Boolean estado){
+        this.fechaInicio = fechaInicio;
+        this.fechaCierre = fechaCierre;
+        this.valorTotal = valorTotal;
+        this.descuento = descuento;
+        this.subTotal = subTotal;
+        this.estado = estado;
     }
     
     //Getter y Setter
@@ -110,14 +122,6 @@ public class Pedido implements Serializable {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-
-    public Mesa getMesa() {
-        return mesa;
-    }
-
-    public void setMesa(Mesa mesa) {
-        this.mesa = mesa;
-    }
     
     //METODOS
     
@@ -132,7 +136,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "Pedido{" + "id_pedido=" + id_pedido + ", fechaInicio=" + fechaInicio + ", fechaCierre=" + fechaCierre + ", valorTotal=" + valorTotal + ", descuento=" + descuento + ", subTotal=" + subTotal + ", estado=" + estado + ", items=" + items + ", mesa=" + mesa + '}';
+        return "Pedido{" + "id_pedido=" + id_pedido + ", fechaInicio=" + fechaInicio + ", fechaCierre=" + fechaCierre + ", valorTotal=" + valorTotal + ", descuento=" + descuento + ", subTotal=" + subTotal + ", estado=" + estado + ", items=" + items + '}';
     }
     
     

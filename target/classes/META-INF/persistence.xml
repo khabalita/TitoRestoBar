@@ -4,9 +4,9 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.titosrestobar.model.Item</class>
     <class>com.mycompany.titosrestobar.model.Mesa</class>
-    <class>com.mycompany.titosrestobar.model.Pedido</class>
     <class>com.mycompany.titosrestobar.model.Producto</class>
     <class>com.mycompany.titosrestobar.model.ProductoNoElaborado</class>
+    <class>com.mycompany.titosrestobar.model.Pedido</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TitosRestobar?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

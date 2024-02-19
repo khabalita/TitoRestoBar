@@ -30,14 +30,15 @@ public class ProductoController {
         productoNoElaborado.setCosto(costo);
         productoNoElaborado.setPrecio(precio);
         productoNoElaborado.setStock(stock);
-        prodNoElabPersis.crearProducto(productoNoElaborado);
+        prodPersis.crearProducto(productoNoElaborado);
     }
     
     //metodo para eliminar producto
     public void eliminarProducto(Integer id_producto) {
         prodPersis.eliminarProducto(id_producto);
     }
-    //metodo para eliminar producto no elaborado
+    
+    //metodo para eliminar producto
     public void editarProducto(Producto producto, String nombre, String descripcion, Double costo, Double precio){
         producto.setNombre(nombre);
         producto.setDescripcion(descripcion);
@@ -45,7 +46,6 @@ public class ProductoController {
         producto.setPrecio(precio);
         prodPersis.editarProducto(producto);
     }
-    //metodo para actualizar producto no elaborado
     
     //metodo que devuelve lista de productos a la tabla
     public List<Producto> traerTodosLosProductos(){
@@ -56,7 +56,11 @@ public class ProductoController {
     public Producto traerProducto(Integer id_producto) {
         return prodPersis.buscarProductoPorId(id_producto);
     }
-
+    /*
+    public ProductoNoElaborado traerProductosNoElaborados(){
+        return (ProductoNoElaborado) prodNoElabPersis.listarProductosNoElaborados();
+    }
+    */
     
 
     

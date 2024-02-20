@@ -21,25 +21,26 @@ public class TitosRestoBar {
         principalView.setLocationRelativeTo(null);
         */
         
+        
         PedidoController pedidoControl = new PedidoController();
         ProductoController prodControl = new ProductoController();
+        MesaController mesaControl = new MesaController();
         
         pedidoControl.crearPedido();
         Producto producto1 = prodControl.traerProducto(1);
-        Pedido pedidoActivo = pedidoControl.traerPedidoActivo(Boolean.TRUE);
+        Pedido pedido = pedidoControl.traerPedidoActivo(Boolean.TRUE);
         Item item1 = new Item();
         item1.setProd(producto1);
         item1.setCantidad(2);
-        item1.setPedido(pedidoActivo);
+        item1.setPedido(pedido);
         item1.calcularSubTotal();
         Double subTotalItem1 = producto1.getPrecio();
         item1.setPrecio(subTotalItem1);
         
-        pedidoControl.agregarItemsAlPedido(pedidoActivo.getId_pedido(), List.of(item1));
+        pedidoControl.agregarItemsAlPedido(pedido.getId_pedido(), List.of(item1));
         
-        if (pedidoActivo != null) {
-            // Obtiene la lista de ítems del pedido activo
-            List<Item> items = pedidoActivo.getItems();
+
+            List<Item> items = pedido.getItems();
 
             // Verifica si hay ítems en la lista
             if (!items.isEmpty()) {
@@ -50,18 +51,15 @@ public class TitosRestoBar {
                     System.out.println("Producto: " + item.getProd().getNombre());
                     System.out.println("Cantidad: " + item.getCantidad());
                     System.out.println("Subtotal: " + item.getPrecio());
-                    // Agrega cualquier otra información que desees mostrar
                     System.out.println("------------------------");
                 }
             } else {
                 System.out.println("El pedido activo no tiene ítems.");
             }
-        } else {
-            System.out.println("No hay un pedido activo en este momento.");
-}
-        
-        
-        
-        
-    }
+            mesaControl.agregarPedidoALaMesa(1, pedido.getId_pedido());
+            pedidoControl.detallePedido(pedido.getId_pedido());
+
+        }
+
+                
 }

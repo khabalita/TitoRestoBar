@@ -1,6 +1,7 @@
 package com.mycompany.titosrestobar.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -47,7 +48,7 @@ public class Pedido implements Serializable {
     @OneToMany(mappedBy = "pedido",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
     
     //Constructor vacio
     public Pedido(){
